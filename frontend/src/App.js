@@ -9,6 +9,7 @@ import CounsellorDashboard from './pages/counsellor/CounsellorDashboard';
 import LegalDashboard from './pages/legal/LegalDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import QuickExit from './components/QuickExit';
+import HomeIcon from './components/HomeIcon';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
@@ -56,6 +57,7 @@ function App() {
     <AuthProvider>
       <Router>
         <QuickExit />
+        <HomeIcon />
         <Routes>
           <Route path="/" element={<HomeRoute />} />
           <Route path="/login" element={<Login />} />
