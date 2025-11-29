@@ -1,0 +1,30 @@
+.quick-exit-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.quick-exit-btn:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .quick-exit-btn {
+    top: 10px;
+    right: 10px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
