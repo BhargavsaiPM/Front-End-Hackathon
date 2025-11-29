@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDashboard from './pages/user/UserDashboard';
@@ -27,23 +28,27 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   return children;
 };
 
-const RoleRedirect = () => {
+const HomeRoute = () => {
   const { user } = useAuth();
-  
-  if (!user) return <Navigate to="/login" replace />;
-  
-  switch (user.role) {
-    case 'victim':
-      return <Navigate to="/user/dashboard" replace />;
-    case 'counsellor':
-      return <Navigate to="/counsellor/dashboard" replace />;
-    case 'legal':
-      return <Navigate to="/legal/dashboard" replace />;
-    case 'admin':
-      return <Navigate to="/admin/dashboard" replace />;
-    default:
-      return <Navigate to="/login" replace />;
+
+  // If user is logged in, redirect to their dashboard
+  if (user) {
+    switch (user.role) {
+      case 'victim':
+        return <Navigate to="/user/dashboard" replace />;
+      case 'counsellor':
+        return <Navigate to="/counsellor/dashboard" replace />;
+      case 'legal':
+        return <Navigate to="/legal/dashboard" replace />;
+      case 'admin':
+        return <Navigate to="/admin/dashboard" replace />;
+      default:
+        return <Home />;
+    }
   }
+
+  // If not logged in, show home page
+  return <Home />;
 };
 
 function App() {
@@ -52,10 +57,10 @@ function App() {
       <Router>
         <QuickExit />
         <Routes>
+          <Route path="/" element={<HomeRoute />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<RoleRedirect />} />
-          
+
           <Route
             path="/user/*"
             element={
@@ -64,7 +69,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/counsellor/*"
             element={
@@ -73,7 +78,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/legal/*"
             element={
@@ -82,7 +87,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/admin/*"
             element={
