@@ -129,6 +129,22 @@ npm start
 
 The frontend will run on `http://localhost:3000` and automatically open in your browser.
 
+## 🚀 Deployment
+
+Ready to deploy your application? We've prepared a comprehensive deployment guide.
+
+**📖 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions on deploying to:**
+- **Frontend**: Vercel (free tier)
+- **Backend**: Render (free tier with persistent SQLite storage)
+
+The deployment guide includes:
+- Step-by-step instructions with screenshots
+- Environment variable configuration
+- Database initialization on production
+- Troubleshooting common issues
+- Auto-deployment setup from GitHub
+
+
 ## Default Login Credentials
 
 After running `npm run init-db` in the backend, you can use these credentials:
